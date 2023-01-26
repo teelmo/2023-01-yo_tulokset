@@ -64,14 +64,19 @@
   background-size: 25px 25px;
 }
 #app-root-2023-01-yo_tulokset .app .results_container h3 {
-  margin: 0;
   background-color: #f6e373;
+  border-radius: 5px;
   display: inline-block;
   font-size: 16px;
-  padding: 5px 100px 5px 10px;
+  margin: 0 0 -10px 0;
+  position: relative;
+  padding: 5px 100px 15px 10px;
   text-transform: uppercase;
+  z-index: 1;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container {
+  position: relative;
+  z-index: 2;
   margin-bottom: 20px;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container:nth-child(2n-1) > h4 {
@@ -123,6 +128,11 @@
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .compare_results h4 {
   background-color: #487685;
   margin: 20px 0 10px 0;
+}
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .country_results h5 {
+  font-weight: 300;
+  font-size: 14px;
+  margin: 10px 0 5px 5px;
 }
 /* General styles */
 .clearfix {
