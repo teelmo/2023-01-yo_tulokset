@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, {
+  useEffect, useState, useRef, useCallback
+} from 'react';
 import '../styles/styles.less';
 
 // https://www.npmjs.com/package/uuid
@@ -17,6 +19,7 @@ function App() {
   const [schools, setSchools] = useState(false);
   const [selectedSchool, setSelectedSchool] = useState(false);
   const [selectedCompare, setSelectedCompare] = useState(false);
+  const [countryData, setCountryData] = useState(false);
 
   useEffect(() => {
     const getDataPath = () => {
@@ -42,19 +45,12 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    if (data !== false) {
-      setSchools([...new Set(data.map(el => el.koulun_nimi))].sort());
-      appRef.current.querySelector('.search input').removeAttribute('disabled');
-    }
-  }, [data]);
-
-  const defineData = (event) => {
+  const defineData = useCallback((event, all = false) => {
     const schoolData = {
-      syksy2022: {},
       kevat2022: {},
+      syksy2022: {}
     };
-    data.filter(el => el.koulun_nimi === event.target.value).map(el => {
+    data.filter(el => el.koulun_nimi === event.target?.value || all === true).map(el => {
       if (el.tutkintokerta === '2022S') {
         Subjects.map(subject => {
           if (el[subject] !== '') {
@@ -88,7 +84,15 @@ function App() {
       return true;
     });
     return schoolData;
-  };
+  }, [data]);
+
+  useEffect(() => {
+    if (data !== false) {
+      setSchools([...new Set(data.map(el => el.koulun_nimi))].sort());
+      setCountryData(defineData(false, true));
+      appRef.current.querySelector('.search input').removeAttribute('disabled');
+    }
+  }, [data, defineData]);
 
   const changeSchool = (event) => {
     if (schools.includes(event.target.value)) {
@@ -186,10 +190,29 @@ function App() {
                               ))
                             }
                           </div>
-
                         </div>
                       )
                     }
+                    <div className="country_results">
+                      <h5>koko Suomi</h5>
+                      <div className="results_row">
+                        <span className="first">kevät 2022</span>
+                        {
+                          [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                            <span key={uuidv4()}>{countryData.kevat2022[subject]?.[grade]}</span>
+                          ))
+                        }
+                      </div>
+                      <div className="results_row">
+                        <span className="first">syksy 2022</span>
+                        {
+                          [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                            <span key={uuidv4()}>{countryData.syksy2022[subject]?.[grade]}</span>
+                          ))
+                        }
+                      </div>
+
+                    </div>
                   </div>
                 </div>
                 )

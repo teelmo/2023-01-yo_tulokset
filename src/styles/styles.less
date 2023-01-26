@@ -63,14 +63,20 @@
   }
   .results_container {
     h3 {
-      margin: 0;
       background-color: #f6e373;
+      border-radius: 5px;
       display: inline-block;
       font-size: 16px;
-      padding: 5px 100px 5px 10px;
+      margin: 0 0 -10px 0;
+      position: relative;
+      padding: 5px 100px 15px 10px;
       text-transform: uppercase;
+      z-index: 1;
+
     }
     .subject_container {
+      position: relative;
+      z-index: 2;
       margin-bottom: 20px;
       &:nth-child(2n-1) {
         > h4 {
@@ -124,6 +130,13 @@
             background-color: #487685;
             margin: 20px 0 10px 0;
           }  
+        }
+        .country_results {
+          h5 {
+            font-weight: 300;
+            font-size: 14px;
+            margin: 10px 0 5px 5px;
+          }
         }
       }
     }
