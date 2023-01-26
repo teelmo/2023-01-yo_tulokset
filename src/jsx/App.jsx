@@ -85,7 +85,6 @@ function App() {
       }
       return true;
     });
-    console.log(schoolData);
     return schoolData;
   }, [data]);
 
