@@ -112,8 +112,8 @@
   min-width: 100px;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row span {
-  font-weight: 700;
   font-size: 16px;
+  font-weight: 700;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row span.last {
   font-size: 14px;
