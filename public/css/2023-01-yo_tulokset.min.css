@@ -71,49 +71,57 @@
   padding: 5px 100px 5px 10px;
   text-transform: uppercase;
 }
-#app-root-2023-01-yo_tulokset .app .results_container h4 {
-  margin: 0;
-  background-color: #487685;
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container {
+  margin-bottom: 20px;
+}
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container:nth-child(2n-1) > h4 {
+  color: #f6e373;
+}
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container h4 {
+  background-color: #4C7259;
+  border-radius: 5px;
   color: #fff;
+  margin: 0;
   padding: 5px 10px 5px 10px;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results {
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results {
   background-color: rgba(76, 114, 89, 0.3);
   box-sizing: border-box;
   font-size: 16px;
   padding: 20px 10px;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results .header_row,
-#app-root-2023-01-yo_tulokset .app .results_container .results .results_row {
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row,
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .results_row {
   display: flex;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results .header_row span,
-#app-root-2023-01-yo_tulokset .app .results_container .results .results_row span {
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row span,
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .results_row span {
   margin-right: 2px;
   padding: 4px 4px;
   text-align: center;
   width: 100%;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results .header_row span.first,
-#app-root-2023-01-yo_tulokset .app .results_container .results .results_row span.first {
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row span.first,
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .results_row span.first {
   margin: 0;
   min-width: 100px;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results .header_row span {
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row span {
   font-weight: 700;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results .results_row {
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .results_row {
   margin-bottom: 2px;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results .results_row span {
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .results_row span {
   background-color: #fff;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results .results_row span.first {
-  font-size: 14px;
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .results_row span.first {
   background-color: #d6d9b1;
+  font-size: 14px;
   font-weight: bold;
 }
-#app-root-2023-01-yo_tulokset .app .results_container .results .compare_results h4 {
+#app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .compare_results h4 {
+  background-color: #487685;
   margin: 20px 0 10px 0;
 }
 /* General styles */

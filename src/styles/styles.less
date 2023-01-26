@@ -70,51 +70,61 @@
       padding: 5px 100px 5px 10px;
       text-transform: uppercase;
     }
-    h4 {
-      margin: 0;
-      background-color: #487685;
-      color: #fff;
-      padding: 5px 10px 5px 10px;
-    }
-    .results {
-      background-color: rgba(76, 114, 89, 0.3);
-      box-sizing: border-box;
-      font-size: 16px;
-      padding: 20px 10px;
-      .header_row,
-      .results_row {
-        display: flex;
-        span {
-          margin-right: 2px;
-          padding: 4px 4px;
-          text-align: center;
-          width: 100%;
-          &.first {
-            margin: 0;
-            min-width: 100px;
+    .subject_container {
+      margin-bottom: 20px;
+      &:nth-child(2n-1) {
+        > h4 {
+          color: #f6e373;
+        }
+      }
+      h4 {
+        background-color: #4C7259;
+        border-radius: 5px;
+        color: #fff;
+        margin: 0;
+        padding: 5px 10px 5px 10px;
+      }
+      .results {
+        background-color: rgba(76, 114, 89, 0.3);
+        box-sizing: border-box;
+        font-size: 16px;
+        padding: 20px 10px;
+        .header_row,
+        .results_row {
+          display: flex;
+          span {
+            margin-right: 2px;
+            padding: 4px 4px;
+            text-align: center;
+            width: 100%;
+            &.first {
+              margin: 0;
+              min-width: 100px;
+            }
           }
         }
-      }
-      .header_row {
-        span {
-          font-weight: 700;
-        }
-      }
-      .results_row {
-        margin-bottom: 2px;
-        span {
-          background-color: #fff;
-          &.first {
-            font-size: 14px;
-            background-color: #d6d9b1;
-            font-weight: bold;
+        .header_row {
+          span {
+            font-weight: 700;
           }
         }
-      }
-      .compare_results {
-        h4 {
-          margin: 20px 0 10px 0;
-        }  
+        .results_row {
+          margin-bottom: 2px;
+          span {
+            background-color: #fff;
+            &.first {
+              background-color: #d6d9b1;
+              font-size: 14px;
+              font-weight: bold;
+            }
+          }
+        }
+        .compare_results {
+          h4 {
+            background-color: #487685;
+            margin: 20px 0 10px 0;
+          }  
+        }
       }
     }
   }

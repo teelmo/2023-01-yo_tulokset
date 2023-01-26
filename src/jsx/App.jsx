@@ -135,9 +135,9 @@ function App() {
             {
               Subjects.map((subject) => (
                 (currentSchoolData.kevat2022[subject] || currentSchoolData.syksy2022[subject] || currentCompareData.kevat2022?.[subject] || currentCompareData.syksy2022?.[subject]) && (
-                <div key={uuidv4()}>
+                <div key={uuidv4()} className="subject_container">
                   <h4>
-                    {Names[subject]}
+                    {Names[subject].charAt(0).toUpperCase() + Names[subject].slice(1)}
                   </h4>
                   <div className="results">
                     <div className="header_row">
