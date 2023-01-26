@@ -7,13 +7,16 @@ import { v4 as uuidv4 } from 'uuid';
 // Load helpers.
 import CSVtoJSON from './helpers/CSVtoJSON.js';
 import Subjects from './helpers/Subjects.js';
+import Names from './helpers/Names.js';
 
 function App() {
   const appRef = useRef();
   const [data, setData] = useState(false);
   const [currentSchoolData, setCurrentSchoolData] = useState(false);
+  const [currentCompareData, setCurrentCompareData] = useState(false);
   const [schools, setSchools] = useState(false);
   const [selectedSchool, setSelectedSchool] = useState(false);
+  const [selectedCompare, setSelectedCompare] = useState(false);
 
   useEffect(() => {
     const getDataPath = () => {
@@ -46,48 +49,62 @@ function App() {
     }
   }, [data]);
 
+  const defineData = (event) => {
+    const schoolData = {
+      syksy2022: {},
+      kevat2022: {},
+    };
+    data.filter(el => el.koulun_nimi === event.target.value).map(el => {
+      if (el.tutkintokerta === '2022S') {
+        Subjects.map(subject => {
+          if (el[subject] !== '') {
+            if (!schoolData.syksy2022[subject]) {
+              schoolData.syksy2022[subject] = {};
+            }
+            if (schoolData.syksy2022[subject][el[subject]]) {
+              schoolData.syksy2022[subject][el[subject]] += 1;
+            } else {
+              schoolData.syksy2022[subject][el[subject]] = 1;
+            }
+          }
+          return true;
+        });
+      }
+      if (el.tutkintokerta === '2022K') {
+        Subjects.map(subject => {
+          if (el[subject] !== '') {
+            if (!schoolData.kevat2022[subject]) {
+              schoolData.kevat2022[subject] = {};
+            }
+            if (schoolData.kevat2022[subject][el[subject]]) {
+              schoolData.kevat2022[subject][el[subject]] += 1;
+            } else {
+              schoolData.kevat2022[subject][el[subject]] = 1;
+            }
+          }
+          return true;
+        });
+      }
+      return true;
+    });
+    return schoolData;
+  };
+
   const changeSchool = (event) => {
     if (schools.includes(event.target.value)) {
+      appRef.current.querySelector('.compare').style.display = 'flex';
       setSelectedSchool(event.target.value);
-      const schoolData = {
-        syksy2022: {},
-        kevat2022: {},
-      };
-      data.filter(el => el.koulun_nimi === event.target.value).map(el => {
-        if (el.tutkintokerta === '2022S') {
-          Subjects.map(subject => {
-            if (el[subject] !== '') {
-              if (!schoolData.syksy2022[subject]) {
-                schoolData.syksy2022[subject] = {};
-              }
-              if (schoolData.syksy2022[subject][el[subject]]) {
-                schoolData.syksy2022[subject][el[subject]] += 1;
-              } else {
-                schoolData.syksy2022[subject][el[subject]] = 1;
-              }
-            }
-            return true;
-          });
-        }
-        if (el.tutkintokerta === '2022K') {
-          Subjects.map(subject => {
-            if (el[subject] !== '') {
-              if (!schoolData.kevat2022[subject]) {
-                schoolData.kevat2022[subject] = {};
-              }
-              if (schoolData.kevat2022[subject][el[subject]]) {
-                schoolData.kevat2022[subject][el[subject]] += 1;
-              } else {
-                schoolData.kevat2022[subject][el[subject]] = 1;
-              }
-            }
-            return true;
-          });
-        }
-        return true;
-      });
-      console.log(schoolData);
-      setCurrentSchoolData(schoolData);
+
+      setCurrentSchoolData(defineData(event));
+    } else {
+      appRef.current.querySelector('.compare').style.display = 'none';
+    }
+  };
+
+  const changeCompare = (event) => {
+    if (schools.includes(event.target.value)) {
+      setSelectedCompare(event.target.value);
+      setCurrentCompareData(defineData(event));
     }
   };
 
@@ -99,17 +116,17 @@ function App() {
         <div className="search">
           <span className="icon icon_search" />
           <input list="app_schools" type="text" placeholder="Hae lukion nimellä" disabled onChange={(event) => changeSchool(event)} />
-          <datalist id="app_schools">
-            {schools && schools.map(municipality => (
-              // eslint-disable-next-line jsx-a11y/control-has-associated-label
-              <option key={municipality} value={municipality} />
-            ))}
-          </datalist>
         </div>
         <div className="compare">
           <span className="icon icon_compare" />
-          <input type="text" />
+          <input list="app_schools" type="text" placeholder="Vertaa haluamaasi lukioon" onChange={(event) => changeCompare(event)} />
         </div>
+        <datalist id="app_schools">
+          {schools && schools.map(municipality => (
+            // eslint-disable-next-line jsx-a11y/control-has-associated-label
+            <option key={municipality} value={municipality} />
+          ))}
+        </datalist>
       </div>
       {
         selectedSchool && (
@@ -117,9 +134,11 @@ function App() {
             <h3>{selectedSchool}</h3>
             {
               Subjects.map((subject) => (
-                (currentSchoolData.kevat2022[subject] || currentSchoolData.syksy2022[subject]) && (
+                (currentSchoolData.kevat2022[subject] || currentSchoolData.syksy2022[subject] || currentCompareData.kevat2022?.[subject] || currentCompareData.syksy2022?.[subject]) && (
                 <div key={uuidv4()}>
-                  <h4>{subject}</h4>
+                  <h4>
+                    {Names[subject]}
+                  </h4>
                   <div className="results">
                     <div className="header_row">
                       <span className="first" />
@@ -132,7 +151,7 @@ function App() {
                       <span>L</span>
                     </div>
                     <div className="results_row">
-                      <span className="first">Kevät 2022</span>
+                      <span className="first">kevät 2022</span>
                       {
                       [0, 2, 3, 4, 5, 6, 7].map(grade => (
                         <span key={uuidv4()}>{currentSchoolData.kevat2022[subject]?.[grade]}</span>
@@ -140,13 +159,37 @@ function App() {
                     }
                     </div>
                     <div className="results_row">
-                      <span className="first">Syksy 2022</span>
+                      <span className="first">syksy 2022</span>
                       {
                         [0, 2, 3, 4, 5, 6, 7].map(grade => (
                           <span key={uuidv4()}>{currentSchoolData.syksy2022[subject]?.[grade]}</span>
                         ))
                     }
                     </div>
+                    {
+                      currentCompareData && (
+                        <div className="compare_results">
+                          <h4>{selectedCompare}</h4>
+                          <div className="results_row">
+                            <span className="first">kevät 2022</span>
+                            {
+                              [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                                <span key={uuidv4()}>{currentCompareData.kevat2022[subject]?.[grade]}</span>
+                              ))
+                            }
+                          </div>
+                          <div className="results_row">
+                            <span className="first">syksy 2022</span>
+                            {
+                              [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                                <span key={uuidv4()}>{currentCompareData.syksy2022[subject]?.[grade]}</span>
+                              ))
+                            }
+                          </div>
+
+                        </div>
+                      )
+                    }
                   </div>
                 </div>
                 )
