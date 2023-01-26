@@ -140,7 +140,7 @@ function App() {
                     }
                     </div>
                     <div className="results_row">
-                      <span className="first">Kevät 2022</span>
+                      <span className="first">Syksy 2022</span>
                       {
                         [0, 2, 3, 4, 5, 6, 7].map(grade => (
                           <span key={uuidv4()}>{currentSchoolData.syksy2022[subject]?.[grade]}</span>
