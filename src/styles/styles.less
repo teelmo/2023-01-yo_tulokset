@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700.css');
+
+#app-root-2023-01-yo_tulokset *, ::before, ::after {
+  box-sizing: content-box;
+}
+
+@import 'yddrasil_overrides.less';
+
+#app-root-2023-01-yo_tulokset .app {
+  box-sizing: border-box;
+  font-family: Open Sans;
+  margin: auto auto;
+  max-width: 600px;
+  padding: 5px;
+  width: 100%;
+  h2 {
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    text-align: center;
+  }
+  p {
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .search_container {
+    margin-bottom: 20px;
+    input {
+      background-color: #e6e6e6;
+      border-radius: 3px;
+      border: 0;
+      box-sizing: border-box;
+      font-size: 16px;
+      height: 35px;
+      outline: none;
+      padding: 1px 10px;
+      width: 85%;
+    }
+    .icon {
+      display: block;
+      height: 35px;
+      margin-right: 5px;
+      width: 35px;
+    }
+    .search {
+      display: flex;
+      .icon {
+        background-image: url('../assets/img/magnifier.svg');
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 35px 35px;
+      }
+    }
+    .compare {
+      display: none;
+    }
+  }
+  .results_container {
+    h3 {
+      margin: 0;
+      background-color: #f6e373;
+      display: inline-block;
+      font-size: 16px;
+      padding: 5px 100px 5px 10px;
+      text-transform: uppercase;
+    }
+    h4 {
+      margin: 0;
+      background-color: #487685;
+      color: #fff;
+      padding: 5px 10px 5px 10px;
+    }
+    .results {
+      padding: 20px 10px;
+      background-color: rgba(76, 114, 89, 0.3);
+      box-sizing: border-box;
+      .header_row,
+      .results_row {
+        display: flex;
+        span {
+          margin-right: 2px;
+          padding: 4px 4px;
+          text-align: center;
+          width: 100%;
+          &.first {
+            margin: 0;
+            min-width: 100px;
+          }
+        }
+      }
+      .header_row {
+        span {
+          font-weight: 700;
+          &.first {
+          }
+        }
+      }
+      .results_row {
+        margin-bottom: 2px;
+        span {
+          background-color: #fff;
+          &.first {
+            font-weight: bold;
+            background-color: #d6d9b1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@import 'basics.less';
