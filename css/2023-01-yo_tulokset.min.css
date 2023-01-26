@@ -46,6 +46,7 @@
 }
 #app-root-2023-01-yo_tulokset .app .search_container .search {
   display: flex;
+  margin-bottom: 5px;
 }
 #app-root-2023-01-yo_tulokset .app .search_container .search .icon {
   background-image: url('../assets/img/magnifier.svg');
@@ -55,6 +56,12 @@
 }
 #app-root-2023-01-yo_tulokset .app .search_container .compare {
   display: none;
+}
+#app-root-2023-01-yo_tulokset .app .search_container .compare .icon {
+  background-image: url('../assets/img/selection.svg');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
 }
 #app-root-2023-01-yo_tulokset .app .results_container h3 {
   margin: 0;
@@ -71,9 +78,10 @@
   padding: 5px 10px 5px 10px;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .results {
-  padding: 20px 10px;
   background-color: rgba(76, 114, 89, 0.3);
   box-sizing: border-box;
+  font-size: 16px;
+  padding: 20px 10px;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .results .header_row,
 #app-root-2023-01-yo_tulokset .app .results_container .results .results_row {
@@ -101,8 +109,12 @@
   background-color: #fff;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .results .results_row span.first {
-  font-weight: bold;
+  font-size: 14px;
   background-color: #d6d9b1;
+  font-weight: bold;
+}
+#app-root-2023-01-yo_tulokset .app .results_container .results .compare_results h4 {
+  margin: 20px 0 10px 0;
 }
 /* General styles */
 .clearfix {
