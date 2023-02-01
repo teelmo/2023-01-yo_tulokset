@@ -113,8 +113,7 @@
 }
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row span .anonymised,
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .results_row span .anonymised {
-  color: #999;
-  font-size: 80%;
+  color: #595959;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row span {
   font-size: 16px;
