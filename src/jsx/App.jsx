@@ -161,19 +161,19 @@ function App() {
                       <span className="first">kevät 2022</span>
                       {
                         [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                          <span key={uuidv4()}>{currentSchoolData.kevat2022[subject]?.[grade]}</span>
+                          <span key={uuidv4()}>{currentSchoolData.kevat2022[subject]?.total < 5 ? '' : currentSchoolData.kevat2022[subject]?.[grade] ? currentSchoolData.kevat2022[subject]?.[grade] : '0' }</span>
                         ))
                       }
-                      <span>{currentSchoolData.kevat2022[subject]?.total}</span>
+                      <span>{currentSchoolData.kevat2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.kevat2022[subject]?.total ? currentSchoolData.kevat2022[subject]?.total : '0'}</span>
                     </div>
                     <div className="results_row">
                       <span className="first">syksy 2022</span>
                       {
                         [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                          <span key={uuidv4()}>{currentSchoolData.syksy2022[subject]?.[grade]}</span>
+                          <span key={uuidv4()}>{currentSchoolData.syksy2022[subject]?.total < 5 ? '' : currentSchoolData.syksy2022[subject]?.[grade] ? currentSchoolData.syksy2022[subject]?.[grade] : '0'}</span>
                         ))
                       }
-                      <span>{currentSchoolData.syksy2022[subject]?.total}</span>
+                      <span>{currentSchoolData.syksy2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.syksy2022[subject]?.total ? currentSchoolData.syksy2022[subject]?.total : '0'}</span>
                     </div>
                     {
                       currentCompareData && (
@@ -183,19 +183,19 @@ function App() {
                             <span className="first">kevät 2022</span>
                             {
                               [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                                <span key={uuidv4()}>{currentCompareData.kevat2022[subject]?.[grade]}</span>
+                                <span key={uuidv4()}>{currentCompareData.kevat2022[subject]?.total < 5 ? '' : currentCompareData.kevat2022[subject]?.[grade] ? currentCompareData.kevat2022[subject]?.[grade] : '0'}</span>
                               ))
                             }
-                            <span>{currentSchoolData.kevat2022[subject]?.total}</span>
+                            <span>{currentCompareData.kevat2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.kevat2022[subject]?.total}</span>
                           </div>
                           <div className="results_row">
                             <span className="first">syksy 2022</span>
                             {
                               [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                                <span key={uuidv4()}>{currentCompareData.syksy2022[subject]?.[grade]}</span>
+                                <span key={uuidv4()}>{currentCompareData.syksy2022[subject]?.total < 5 ? '' : currentCompareData.syksy2022[subject]?.[grade] ? currentCompareData.syksy2022[subject]?.[grade] : '0'}</span>
                               ))
                             }
-                            <span>{currentCompareData.syksy2022[subject]?.total}</span>
+                            <span>{currentCompareData.syksy2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.syksy2022[subject]?.total ? currentCompareData.syksy2022[subject]?.total : '0'}</span>
                           </div>
                         </div>
                       )
@@ -206,21 +206,20 @@ function App() {
                         <span className="first">kevät 2022</span>
                         {
                           [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                            <span key={uuidv4()}>{countryData.kevat2022[subject]?.[grade]}</span>
+                            <span key={uuidv4()}>{countryData.kevat2022[subject]?.total < 5 ? '' : countryData.kevat2022[subject]?.[grade]}</span>
                           ))
                         }
-                        <span>{countryData.kevat2022[subject].total}</span>
+                        <span>{countryData.kevat2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.kevat2022[subject]?.total}</span>
                       </div>
                       <div className="results_row">
                         <span className="first">syksy 2022</span>
                         {
                           [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                            <span key={uuidv4()}>{countryData.syksy2022[subject]?.[grade]}</span>
+                            <span key={uuidv4()}>{countryData.syksy2022[subject]?.total < 5 ? '' : countryData.syksy2022[subject]?.[grade]}</span>
                           ))
                         }
-                        <span>{countryData.syksy2022[subject].total}</span>
+                        <span>{countryData.syksy2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.syksy2022[subject]?.total}</span>
                       </div>
-
                     </div>
                   </div>
                 </div>
