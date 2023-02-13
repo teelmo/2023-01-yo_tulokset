@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     const getDataPath = () => {
       if (window.location.href.includes('github')) return './assets/data/';
-      if (process.env.NODE_ENV === 'production') return 'https://lusi-dataviz.ylestatic.fi/2023-01-yo_tulokset/assets/data/';
+      if (process.env.NODE_ENV === 'production') return 'https://lusi-dataviz.ylestatic.fi/2023-01-yo_tulokset/assets/data';
       return 'assets/data';
     };
 

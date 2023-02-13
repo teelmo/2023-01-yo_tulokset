@@ -47,7 +47,6 @@ const plusAppMethods = {
 };
 
 if (process.env.NODE_ENV === 'production' && window.yleVisualisation) {
-  console.log('as');
   window.yleVisualisationEmbeds = window.yleVisualisationEmbeds || {};
   window.yleVisualisationEmbeds[appName] = eventHandlers;
 } else if (process.env.NODE_ENV === 'production' && !window.yleVisualisation) {

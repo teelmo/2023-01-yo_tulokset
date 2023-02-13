@@ -10,12 +10,12 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.prod.js",
     "list-some-configs": "yle asu lusi-aws-yle \"aws s3 ls s3://lusi-dataviz-prod/share_configs/\"",
-    "list-some-files": "yle asu lusi-aws-yle \"aws s3 ls s3://lusi-dataviz-prod/share/sahkokatkot/\"",
+    "list-some-files": "yle asu lusi-aws-yle \"aws s3 ls s3://lusi-dataviz-prod/share/2023-01-yo_tulokset/\"",
     "push": "git push && git push yle main",
     "start": "webpack serve --open --config webpack.dev.js",
     "sync-gh-pages": "git subtree push --prefix public origin gh-pages",
     "sync-prod": "npm run build && dataviz-deploy generate --dir public && dataviz-deploy sync lusi 2023-01-yo_tulokset --folder public",
-    "sync-share-config": "cd data && yle asu lusi-aws-yle \"aws s3 sync . s3://lusi-dataviz-prod/share_configs --exclude='*' --include='sahkokatkot.json'\""
+    "sync-share-config": "cd data && yle asu lusi-aws-yle \"aws s3 sync . s3://lusi-dataviz-prod/share_configs --exclude='*' --include='2023-01-yo_tulokset.json'\""
   },
   "keywords": [],
   "author": "",
