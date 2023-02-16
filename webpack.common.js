@@ -57,13 +57,13 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'js/' + name + '.min.js',
+    filename: 'js/' + name + '.[contenthash].min.js',
     path: path.resolve(__dirname, './public'),
     clean: true
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/' + name + '.min.css'
+      filename: 'css/' + name + '.[contenthash].min.css'
     }),
     new HtmlWebPackPlugin({
       title: name,

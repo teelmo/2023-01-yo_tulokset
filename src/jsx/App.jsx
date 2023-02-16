@@ -38,7 +38,6 @@ function App() {
             return response.text();
           })
           .then(body => setData(CSVtoJSON(body))),
-
       ]);
     } catch (error) {
       console.error(error);
