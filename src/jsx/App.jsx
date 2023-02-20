@@ -116,7 +116,9 @@ function App() {
   return (
     <div className="app" ref={appRef}>
       <h2>Katso, miten arvosanat jakautuivat oppiaineittain lukiossasi</h2>
-      <p>Assassin stimulate cardboard denim girl alcohol neural RAF 8-bit BASE jump refrigerator military-grade narrative soul-delay otaku tower. Boat DIY alcohol monofilament dome knife courier smart-corrupted otaku stimulate motion advert beef noodles fetishism soul-delay. Realism corporation stimulate voodoo god San Francisco neural man office claymore mine uplink. Drone spook soul-delay office woman dead uplink dolphin fetishism tiger-team nodality jeans meta-long-chain hydrocarbons otaku boy range-rover. Cardboard shoes dissident into lights knife disposable rain media tower geodesic. Papier-mache hotdog hacker augmented reality tattoo carbon motion A.I. stimulate disposable ablative katana weathered 3D-printed free-market monofilament camera.</p>
+      <p>Kirjoita ylempään hakukenttään oman lukiosi nimi ja katso, miten arvosanat jakautuivat lukiossasi syksyllä ja keväällä. Halutessasi voit verrata arvosanoja toisen lukion kanssa kirjoittamalla lukion nimen alimmaiseen hakukenttään.</p>
+      <p>Arvosanakoneesta pystyt katsomaan myös, miten arvosanat ovat jakautuneet koko Suomessa.</p>
+      <p><strong>Huom!</strong> Mikäli kokeeseen on osallistunut alle viisi henkilöä, ei kone näytä arvosanoja, jotta yksittäiset kokelaat eivät ole tunnistettavissa. Jos kirjoittajia ei ole ollut ollenkaan, rivin sarakkeissa näkyy numero nolla.</p>
       <div className="search_container">
         <div className="search">
           <span className="icon icon_search" />
