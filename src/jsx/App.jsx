@@ -118,7 +118,7 @@ function App() {
       <h2>Katso, miten arvosanat jakautuivat oppiaineittain lukiossasi</h2>
       <p>Kirjoita ylempään hakukenttään oman lukiosi nimi ja katso, miten arvosanat jakautuivat lukiossasi syksyllä ja keväällä. Halutessasi voit verrata arvosanoja toisen lukion kanssa kirjoittamalla lukion nimen alimmaiseen hakukenttään.</p>
       <p>Arvosanakoneesta pystyt katsomaan myös, miten arvosanat ovat jakautuneet koko Suomessa.</p>
-      <p><strong>Huom!</strong> Mikäli kokeeseen on osallistunut alle viisi henkilöä, ei kone näytä arvosanoja, jotta yksittäiset kokelaat eivät ole tunnistettavissa. Jos kirjoittajia ei ole ollut ollenkaan, rivin sarakkeissa näkyy numero nolla.</p>
+      <p><strong>Huom!</strong> Mikäli kokeeseen on osallistunut alle viisi henkilöä, ei kone näytä arvosanoja, jotta yksittäiset kokelaat eivät ole tunnistettavissa.</p>
       <div className="search_container">
         <div className="search">
           <span className="icon icon_search" />
