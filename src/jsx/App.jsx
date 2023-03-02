@@ -225,6 +225,11 @@ function App() {
                 )
               ))
             }
+            <p>
+              Tiedot haettu
+              <a href="https://www.ylioppilastutkinto.fi/tietopalvelut/tilastot/koulukohtaisia-tunnuslukuja" target="_blank" rel="noreferrer">YTL</a>
+              :ltä 2.3.2022.
+            </p>
           </div>
         )
       }
