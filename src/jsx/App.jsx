@@ -30,7 +30,7 @@ function App() {
 
     try {
       Promise.all([
-        fetch(`${getDataPath()}/2023-01-yo_tulokset_2022_data.csv`)
+        fetch(`${getDataPath()}/2023-01-yo_tulokset_data.csv`)
           .then((response) => {
             if (!response.ok) {
               throw Error(response.statusText);
@@ -47,9 +47,26 @@ function App() {
   const defineData = useCallback((event, all = false) => {
     const schoolData = {
       kevat2022: {},
-      syksy2022: {}
+      syksy2022: {},
+      kevat2023: {}
     };
     data.filter(el => el.koulun_nimi === event.target?.value || all === true).map(el => {
+      if (el.tutkintokerta === '2022K') {
+        Subjects.map(subject => {
+          if (el[subject] !== '') {
+            if (!schoolData.kevat2022[subject]) {
+              schoolData.kevat2022[subject] = { total: 0 };
+            }
+            if (schoolData.kevat2022[subject][el[subject]]) {
+              schoolData.kevat2022[subject][el[subject]] += 1;
+            } else {
+              schoolData.kevat2022[subject][el[subject]] = 1;
+            }
+            schoolData.kevat2022[subject].total++;
+          }
+          return true;
+        });
+      }
       if (el.tutkintokerta === '2022S') {
         Subjects.map(subject => {
           if (el[subject] !== '') {
@@ -66,18 +83,18 @@ function App() {
           return true;
         });
       }
-      if (el.tutkintokerta === '2022K') {
+      if (el.tutkintokerta === '2023K') {
         Subjects.map(subject => {
           if (el[subject] !== '') {
-            if (!schoolData.kevat2022[subject]) {
-              schoolData.kevat2022[subject] = { total: 0 };
+            if (!schoolData.kevat2023[subject]) {
+              schoolData.kevat2023[subject] = { total: 0 };
             }
-            if (schoolData.kevat2022[subject][el[subject]]) {
-              schoolData.kevat2022[subject][el[subject]] += 1;
+            if (schoolData.kevat2023[subject][el[subject]]) {
+              schoolData.kevat2023[subject][el[subject]] += 1;
             } else {
-              schoolData.kevat2022[subject][el[subject]] = 1;
+              schoolData.kevat2023[subject][el[subject]] = 1;
             }
-            schoolData.kevat2022[subject].total++;
+            schoolData.kevat2023[subject].total++;
           }
           return true;
         });
@@ -139,7 +156,7 @@ function App() {
             <h3>{selectedSchool}</h3>
             {
               Subjects.map((subject) => (
-                (currentSchoolData.kevat2022[subject] || currentSchoolData.syksy2022[subject] || currentCompareData.kevat2022?.[subject] || currentCompareData.syksy2022?.[subject]) && (
+                (currentSchoolData.kevat2022[subject] || currentSchoolData.syksy2022[subject] || currentSchoolData.kevat2023[subject] || currentCompareData.kevat2022?.[subject] || currentCompareData.syksy2022?.[subject] || currentCompareData.kevat2023?.[subject]) && (
                 <div key={uuidv4()} className="subject_container">
                   <h4>
                     {Names[subject].charAt(0).toUpperCase() + Names[subject].slice(1)}
@@ -174,6 +191,15 @@ function App() {
                       }
                       <span>{currentSchoolData.syksy2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.syksy2022[subject]?.total ? currentSchoolData.syksy2022[subject]?.total : '0'}</span>
                     </div>
+                    <div className="results_row">
+                      <span className="first">kevät 2022</span>
+                      {
+                        [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                          <span key={uuidv4()}>{currentSchoolData.kevat2023[subject]?.total < 5 ? '' : currentSchoolData.kevat2023[subject]?.[grade] ? currentSchoolData.kevat2023[subject]?.[grade] : '0'}</span>
+                        ))
+                      }
+                      <span>{currentSchoolData.kevat2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.kevat2023[subject]?.total ? currentSchoolData.kevat2023[subject]?.total : '0'}</span>
+                    </div>
                     {
                       currentCompareData && (
                         <div className="compare_results">
@@ -195,6 +221,15 @@ function App() {
                               ))
                             }
                             <span>{currentCompareData.syksy2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.syksy2022[subject]?.total ? currentCompareData.syksy2022[subject]?.total : '0'}</span>
+                          </div>
+                          <div className="results_row">
+                            <span className="first">kevät 2023</span>
+                            {
+                              [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                                <span key={uuidv4()}>{currentCompareData.kevat2023[subject]?.total < 5 ? '' : currentCompareData.kevat2023[subject]?.[grade] ? currentCompareData.kevat2023[subject]?.[grade] : '0'}</span>
+                              ))
+                            }
+                            <span>{currentCompareData.kevat2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.kevat2023[subject]?.total ? currentCompareData.kevat2023[subject]?.total : '0'}</span>
                           </div>
                         </div>
                       )
@@ -219,6 +254,15 @@ function App() {
                         }
                         <span>{countryData.syksy2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.syksy2022[subject]?.total}</span>
                       </div>
+                      <div className="results_row">
+                        <span className="first">kevät 2023</span>
+                        {
+                          [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                            <span key={uuidv4()}>{countryData.kevat2023[subject]?.total < 5 ? '' : countryData.kevat2023[subject]?.[grade]}</span>
+                          ))
+                        }
+                        <span>{countryData.kevat2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.kevat2023[subject]?.total}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -228,7 +272,7 @@ function App() {
             <p>
               Tiedot haettu
               <a href="https://www.ylioppilastutkinto.fi/tietopalvelut/tilastot/koulukohtaisia-tunnuslukuja" target="_blank" rel="noreferrer">YTL</a>
-              :ltä 2.3.2023.
+              :ltä 23.5.2023.
             </p>
           </div>
         )
