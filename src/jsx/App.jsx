@@ -192,7 +192,7 @@ function App() {
                       <span>{currentSchoolData.syksy2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.syksy2022[subject]?.total ? currentSchoolData.syksy2022[subject]?.total : '0'}</span>
                     </div>
                     <div className="results_row">
-                      <span className="first">kevät 2022</span>
+                      <span className="first">kevät 2023</span>
                       {
                         [0, 2, 3, 4, 5, 6, 7].map(grade => (
                           <span key={uuidv4()}>{currentSchoolData.kevat2023[subject]?.total < 5 ? '' : currentSchoolData.kevat2023[subject]?.[grade] ? currentSchoolData.kevat2023[subject]?.[grade] : '0'}</span>
@@ -271,6 +271,7 @@ function App() {
             }
             <p>
               Tiedot haettu
+              {' '}
               <a href="https://www.ylioppilastutkinto.fi/tietopalvelut/tilastot/koulukohtaisia-tunnuslukuja" target="_blank" rel="noreferrer">YTL</a>
               :ltä 23.5.2023.
             </p>
