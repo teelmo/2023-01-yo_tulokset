@@ -2,6 +2,11 @@
 
 **Live demo** https://teelmo.github.io/2023-01-yo_tulokset/
 
+## Data
+
+* https://tiedostot.ylioppilastutkinto.fi/ext/data/FT2023SD4001.csv
+* https://www.ylioppilastutkinto.fi/fi/tietopalvelut/tilastot/oppilaitoskohtaisia-tunnuslukuja
+
 ## Rights of usage
 
 Contact Teemo Tebest.

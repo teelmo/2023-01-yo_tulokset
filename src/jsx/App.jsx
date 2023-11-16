@@ -48,7 +48,8 @@ function App() {
     const schoolData = {
       kevat2022: {},
       syksy2022: {},
-      kevat2023: {}
+      kevat2023: {},
+      syksy2023: {}
     };
     data.filter(el => el.koulun_nimi === event.target?.value || all === true).map(el => {
       if (el.tutkintokerta === '2022K') {
@@ -95,6 +96,22 @@ function App() {
               schoolData.kevat2023[subject][el[subject]] = 1;
             }
             schoolData.kevat2023[subject].total++;
+          }
+          return true;
+        });
+      }
+      if (el.tutkintokerta === '2023S') {
+        Subjects.map(subject => {
+          if (el[subject] !== '') {
+            if (!schoolData.syksy2023[subject]) {
+              schoolData.syksy2023[subject] = { total: 0 };
+            }
+            if (schoolData.syksy2023[subject][el[subject]]) {
+              schoolData.syksy2023[subject][el[subject]] += 1;
+            } else {
+              schoolData.syksy2023[subject][el[subject]] = 1;
+            }
+            schoolData.syksy2023[subject].total++;
           }
           return true;
         });
@@ -200,6 +217,15 @@ function App() {
                       }
                       <span>{currentSchoolData.kevat2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.kevat2023[subject]?.total ? currentSchoolData.kevat2023[subject]?.total : '0'}</span>
                     </div>
+                    <div className="results_row">
+                      <span className="first">syksy 2023</span>
+                      {
+                        [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                          <span key={uuidv4()}>{currentSchoolData.syksy2023[subject]?.total < 5 ? '' : currentSchoolData.syksy2023[subject]?.[grade] ? currentSchoolData.syksy2023[subject]?.[grade] : '0'}</span>
+                        ))
+                      }
+                      <span>{currentSchoolData.syksy2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.syksy2023[subject]?.total ? currentSchoolData.syksy2023[subject]?.total : '0'}</span>
+                    </div>
                     {
                       currentCompareData && (
                         <div className="compare_results">
@@ -230,6 +256,15 @@ function App() {
                               ))
                             }
                             <span>{currentCompareData.kevat2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.kevat2023[subject]?.total ? currentCompareData.kevat2023[subject]?.total : '0'}</span>
+                          </div>
+                          <div className="results_row">
+                            <span className="first">syksy 2023</span>
+                            {
+                              [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                                <span key={uuidv4()}>{currentCompareData.syksy2023[subject]?.total < 5 ? '' : currentCompareData.syksy2023[subject]?.[grade] ? currentCompareData.syksy2023[subject]?.[grade] : '0'}</span>
+                              ))
+                            }
+                            <span>{currentCompareData.syksy2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.syksy2023[subject]?.total ? currentCompareData.syksy2023[subject]?.total : '0'}</span>
                           </div>
                         </div>
                       )
@@ -273,7 +308,7 @@ function App() {
               Tiedot haettu
               {' '}
               <a href="https://www.ylioppilastutkinto.fi/tietopalvelut/tilastot/koulukohtaisia-tunnuslukuja" target="_blank" rel="noreferrer">YTL</a>
-              :ltä 23.5.2023.
+              :ltä 14.11.2023.
             </p>
           </div>
         )
