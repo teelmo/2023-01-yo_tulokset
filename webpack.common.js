@@ -1,9 +1,7 @@
 const path = require('path');
 const name = require('./package.json').name;
 const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 
 module.exports = {
   entry: {
@@ -57,22 +55,15 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'js/' + name + '.[contenthash].min.js',
+    filename: 'js/' + name + '.min.js',
     path: path.resolve(__dirname, './public'),
     clean: true
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/' + name + '.[contenthash].min.css'
-    }),
-    new HtmlWebPackPlugin({
-      title: name,
-      template: "./src/html/index.html",
-      filename: "./index.html"
-    }),
     new CopyPlugin({
       patterns: [
         { from: 'assets/img/', to: '../public/assets/img/', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
+        { from: 'assets/vid/', to: '../public/assets/vid/', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
         { from: 'assets/data/data.csv', to: '../public/assets/data/2023-01-yo_tulokset_data.csv', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
         { from: 'src/font/', to: '../public/font/', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
         { from: './favicon.png', to: '../public', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }}

@@ -14,7 +14,7 @@
     "push": "git push && git push yle main",
     "start": "webpack serve --open --config webpack.dev.js",
     "sync-gh-pages": "git subtree push --prefix public origin gh-pages",
-    "sync-prod": "npm run build && dataviz-deploy generate --dir public && dataviz-deploy sync lusi 2023-01-yo_tulokset --folder public",
+    "sync-prod": "NODE_ENV=production webpack --config webpack.yle.js && dataviz-deploy generate --dir public && aws s3 sync ./public s3://lusi-dataviz-prod/2023-01-yo_tulokset --profile lusi-aws-yle && date > sync-prod.txt",
     "sync-share-config": "cd data && yle asu lusi-aws-yle \"aws s3 sync . s3://lusi-dataviz-prod/share_configs --exclude='*' --include='2023-01-yo_tulokset.json'\""
   },
   "keywords": [],
