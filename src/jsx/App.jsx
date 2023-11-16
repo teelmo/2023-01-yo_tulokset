@@ -298,6 +298,15 @@ function App() {
                         }
                         <span>{countryData.kevat2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.kevat2023[subject]?.total}</span>
                       </div>
+                      <div className="results_row">
+                        <span className="first">syksy 2023</span>
+                        {
+                          [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                            <span key={uuidv4()}>{countryData.syksy2023[subject]?.total < 5 ? '' : countryData.syksy2023[subject]?.[grade]}</span>
+                          ))
+                        }
+                        <span>{countryData.syksy2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.syksy2023[subject]?.total}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
