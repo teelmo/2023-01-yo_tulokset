@@ -46,28 +46,12 @@ function App() {
 
   const defineData = useCallback((event, all = false) => {
     const schoolData = {
-      kevat2022: {},
       syksy2022: {},
       kevat2023: {},
-      syksy2023: {}
+      syksy2023: {},
+      kevat2024: {}
     };
     data.filter(el => el.koulun_nimi === event.target?.value || all === true).map(el => {
-      if (el.tutkintokerta === '2022K') {
-        Subjects.map(subject => {
-          if (el[subject] !== '') {
-            if (!schoolData.kevat2022[subject]) {
-              schoolData.kevat2022[subject] = { total: 0 };
-            }
-            if (schoolData.kevat2022[subject][el[subject]]) {
-              schoolData.kevat2022[subject][el[subject]] += 1;
-            } else {
-              schoolData.kevat2022[subject][el[subject]] = 1;
-            }
-            schoolData.kevat2022[subject].total++;
-          }
-          return true;
-        });
-      }
       if (el.tutkintokerta === '2022S') {
         Subjects.map(subject => {
           if (el[subject] !== '') {
@@ -112,6 +96,23 @@ function App() {
               schoolData.syksy2023[subject][el[subject]] = 1;
             }
             schoolData.syksy2023[subject].total++;
+          }
+          return true;
+        });
+      }
+
+      if (el.tutkintokerta === '2024K') {
+        Subjects.map(subject => {
+          if (el[subject] !== '') {
+            if (!schoolData.kevat2024[subject]) {
+              schoolData.kevat2024[subject] = { total: 0 };
+            }
+            if (schoolData.kevat2024[subject][el[subject]]) {
+              schoolData.kevat2024[subject][el[subject]] += 1;
+            } else {
+              schoolData.kevat2024[subject][el[subject]] = 1;
+            }
+            schoolData.kevat2024[subject].total++;
           }
           return true;
         });
@@ -173,7 +174,7 @@ function App() {
             <h3>{selectedSchool}</h3>
             {
               Subjects.map((subject) => (
-                (currentSchoolData.kevat2022[subject] || currentSchoolData.syksy2022[subject] || currentSchoolData.kevat2023[subject] || currentCompareData.kevat2022?.[subject] || currentCompareData.syksy2022?.[subject] || currentCompareData.kevat2023?.[subject]) && (
+                (currentSchoolData.syksy2022[subject] || currentSchoolData.kevat2023[subject] || currentSchoolData.syksy2023[subject] || currentSchoolData.kevat2024[subject] || currentCompareData.syksy2022?.[subject] || currentCompareData.kevat2023?.[subject] || currentCompareData.syksy2023?.[subject] || currentCompareData.kevat2024?.[subject]) && (
                 <div key={uuidv4()} className="subject_container">
                   <h4>
                     {Names[subject].charAt(0).toUpperCase() + Names[subject].slice(1)}
@@ -189,15 +190,6 @@ function App() {
                       <span>E</span>
                       <span>L</span>
                       <span className="last">yht.</span>
-                    </div>
-                    <div className="results_row">
-                      <span className="first">kevät 2022</span>
-                      {
-                        [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                          <span key={uuidv4()}>{currentSchoolData.kevat2022[subject]?.total < 5 ? '' : currentSchoolData.kevat2022[subject]?.[grade] ? currentSchoolData.kevat2022[subject]?.[grade] : '0' }</span>
-                        ))
-                      }
-                      <span>{currentSchoolData.kevat2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.kevat2022[subject]?.total ? currentSchoolData.kevat2022[subject]?.total : '0'}</span>
                     </div>
                     <div className="results_row">
                       <span className="first">syksy 2022</span>
@@ -226,19 +218,19 @@ function App() {
                       }
                       <span>{currentSchoolData.syksy2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.syksy2023[subject]?.total ? currentSchoolData.syksy2023[subject]?.total : '0'}</span>
                     </div>
+                    <div className="results_row">
+                      <span className="first">kevät 2024</span>
+                      {
+                        [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                          <span key={uuidv4()}>{currentSchoolData.kevat2024[subject]?.total < 5 ? '' : currentSchoolData.kevat2024[subject]?.[grade] ? currentSchoolData.kevat2024[subject]?.[grade] : '0'}</span>
+                        ))
+                      }
+                      <span>{currentSchoolData.kevat2024[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentSchoolData.kevat2024[subject]?.total ? currentSchoolData.kevat2024[subject]?.total : '0'}</span>
+                    </div>
                     {
                       currentCompareData && (
                         <div className="compare_results">
                           <h4>{selectedCompare}</h4>
-                          <div className="results_row">
-                            <span className="first">kevät 2022</span>
-                            {
-                              [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                                <span key={uuidv4()}>{currentCompareData.kevat2022[subject]?.total < 5 ? '' : currentCompareData.kevat2022[subject]?.[grade] ? currentCompareData.kevat2022[subject]?.[grade] : '0'}</span>
-                              ))
-                            }
-                            <span>{currentCompareData.kevat2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.kevat2022[subject]?.total}</span>
-                          </div>
                           <div className="results_row">
                             <span className="first">syksy 2022</span>
                             {
@@ -266,20 +258,20 @@ function App() {
                             }
                             <span>{currentCompareData.syksy2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.syksy2023[subject]?.total ? currentCompareData.syksy2023[subject]?.total : '0'}</span>
                           </div>
+                          <div className="results_row">
+                            <span className="first">kevät 2024</span>
+                            {
+                              [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                                <span key={uuidv4()}>{currentCompareData.kevat2024[subject]?.total < 5 ? '' : currentCompareData.kevat2024[subject]?.[grade] ? currentCompareData.kevat2024[subject]?.[grade] : '0'}</span>
+                              ))
+                            }
+                            <span>{currentCompareData.kevat2024[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : currentCompareData.kevat2024[subject]?.total ? currentCompareData.kevat2024[subject]?.total : '0'}</span>
+                          </div>
                         </div>
                       )
                     }
                     <div className="country_results">
                       <h5>koko Suomi</h5>
-                      <div className="results_row">
-                        <span className="first">kevät 2022</span>
-                        {
-                          [0, 2, 3, 4, 5, 6, 7].map(grade => (
-                            <span key={uuidv4()}>{countryData.kevat2022[subject]?.total < 5 ? '' : countryData.kevat2022[subject]?.[grade]}</span>
-                          ))
-                        }
-                        <span>{countryData.kevat2022[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.kevat2022[subject]?.total}</span>
-                      </div>
                       <div className="results_row">
                         <span className="first">syksy 2022</span>
                         {
@@ -307,6 +299,15 @@ function App() {
                         }
                         <span>{countryData.syksy2023[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.syksy2023[subject]?.total}</span>
                       </div>
+                      <div className="results_row">
+                        <span className="first">kevät 2024</span>
+                        {
+                          [0, 2, 3, 4, 5, 6, 7].map(grade => (
+                            <span key={uuidv4()}>{countryData.kevat2024[subject]?.total < 5 ? '' : countryData.kevat2024[subject]?.[grade]}</span>
+                          ))
+                        }
+                        <span>{countryData.kevat2024[subject]?.total < 5 ? <span className="anonymised">&lt;5</span> : countryData.kevat2024[subject]?.total}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -316,8 +317,8 @@ function App() {
             <p>
               Tiedot haettu
               {' '}
-              <a href="https://www.ylioppilastutkinto.fi/tietopalvelut/tilastot/koulukohtaisia-tunnuslukuja" target="_blank" rel="noreferrer">YTL</a>
-              :ltä 14.11.2023.
+              <a href="https://www.ylioppilastutkinto.fi/fi/tietopalvelut/tilastot/oppilaitoskohtaisia-tunnuslukuja" target="_blank" rel="noreferrer">YTL</a>
+              :ltä 21.05.2024.
             </p>
           </div>
         )

@@ -4,8 +4,12 @@
 
 ## Data
 
-* https://tiedostot.ylioppilastutkinto.fi/ext/data/FT2023SD4001.csv
+* https://tiedostot.ylioppilastutkinto.fi/ext/data/FT2024KD4001.csv
 * https://www.ylioppilastutkinto.fi/fi/tietopalvelut/tilastot/oppilaitoskohtaisia-tunnuslukuja
+
+## How to update
+
+Update the code in four places.
 
 ## Rights of usage
 
