@@ -9,7 +9,7 @@
 
 ## How to update
 
-Update the code in four places.
+Update the code, update the data (need to convert semicolons to colons)
 
 ## Rights of usage
 
