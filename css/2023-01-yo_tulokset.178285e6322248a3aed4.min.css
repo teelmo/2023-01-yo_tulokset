@@ -74,6 +74,9 @@
   font-weight: 300;
   margin-bottom: 20px;
 }
+#app-root-2023-01-yo_tulokset .app p a {
+  color: #000;
+}
 #app-root-2023-01-yo_tulokset .app .search_container {
   margin-bottom: 20px;
 }
@@ -143,6 +146,7 @@
   background-color: rgba(76, 114, 89, 0.3);
   box-sizing: border-box;
   font-size: 16px;
+  overflow: scroll;
   padding: 20px 10px;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row,
@@ -155,6 +159,7 @@
   padding: 4px 4px;
   text-align: center;
   width: 100%;
+  min-width: 58.75px;
 }
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .header_row span.first,
 #app-root-2023-01-yo_tulokset .app .results_container .subject_container .results .results_row span.first {
